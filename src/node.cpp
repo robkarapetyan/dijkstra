@@ -24,7 +24,7 @@ void Node::remove_neighbour(std::string_view name){
 
 			node_neighbours.erase(node_neighbours.begin() + i);
 			}
-		}
+                }
 	}
 }
 
@@ -42,6 +42,10 @@ void Node::remove_neighbour(Node* node_to_remove){
 	}
 }
 
-std::string_view Node::get_name(){
+std::string Node::get_name(){
 	return node_name;
+}
+
+std::vector<Node*> Node::get_neighbours(){
+        return node_neighbours;
 }

@@ -1,8 +1,8 @@
-# Install script for directory: /new_folder/dijkstra
+# Install script for directory: /home/rob/c++_stuff/dijkstra/dijkstra
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/new_folder/dijkstra/install")
+  set(CMAKE_INSTALL_PREFIX "/usr/local")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -44,7 +44,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/install/Dijkstra_shortest_path"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/install" TYPE EXECUTABLE FILES "/new_folder/dijkstra/build/Dijkstra_shortest_path")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/install" TYPE EXECUTABLE FILES "/home/rob/c++_stuff/dijkstra/dijkstra/build/Dijkstra_shortest_path")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/install/Dijkstra_shortest_path" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/install/Dijkstra_shortest_path")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -61,5 +61,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/new_folder/dijkstra/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/rob/c++_stuff/dijkstra/dijkstra/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
