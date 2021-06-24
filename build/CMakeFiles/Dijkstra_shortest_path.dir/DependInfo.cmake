@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/rob/c++_stuff/dijkstra/dijkstra/src/graph.cpp" "/home/rob/c++_stuff/dijkstra/dijkstra/build/CMakeFiles/Dijkstra_shortest_path.dir/src/graph.cpp.o"
-  "/home/rob/c++_stuff/dijkstra/dijkstra/src/main.cpp" "/home/rob/c++_stuff/dijkstra/dijkstra/build/CMakeFiles/Dijkstra_shortest_path.dir/src/main.cpp.o"
-  "/home/rob/c++_stuff/dijkstra/dijkstra/src/node.cpp" "/home/rob/c++_stuff/dijkstra/dijkstra/build/CMakeFiles/Dijkstra_shortest_path.dir/src/node.cpp.o"
+  "/new_folder/dijkstra/src/graph.cpp" "/new_folder/dijkstra/build/CMakeFiles/Dijkstra_shortest_path.dir/src/graph.cpp.o"
+  "/new_folder/dijkstra/src/main.cpp" "/new_folder/dijkstra/build/CMakeFiles/Dijkstra_shortest_path.dir/src/main.cpp.o"
+  "/new_folder/dijkstra/src/node.cpp" "/new_folder/dijkstra/build/CMakeFiles/Dijkstra_shortest_path.dir/src/node.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

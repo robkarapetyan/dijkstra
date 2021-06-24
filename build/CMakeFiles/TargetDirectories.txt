@@ -1,7 +1,7 @@
-/home/rob/c++_stuff/dijkstra/dijkstra/build/CMakeFiles/install/strip.dir
-/home/rob/c++_stuff/dijkstra/dijkstra/build/CMakeFiles/edit_cache.dir
-/home/rob/c++_stuff/dijkstra/dijkstra/build/CMakeFiles/Dijkstra_shortest_path.dir
-/home/rob/c++_stuff/dijkstra/dijkstra/build/CMakeFiles/list_install_components.dir
-/home/rob/c++_stuff/dijkstra/dijkstra/build/CMakeFiles/install/local.dir
-/home/rob/c++_stuff/dijkstra/dijkstra/build/CMakeFiles/rebuild_cache.dir
-/home/rob/c++_stuff/dijkstra/dijkstra/build/CMakeFiles/install.dir
+/new_folder/dijkstra/build/CMakeFiles/install/strip.dir
+/new_folder/dijkstra/build/CMakeFiles/edit_cache.dir
+/new_folder/dijkstra/build/CMakeFiles/Dijkstra_shortest_path.dir
+/new_folder/dijkstra/build/CMakeFiles/list_install_components.dir
+/new_folder/dijkstra/build/CMakeFiles/install/local.dir
+/new_folder/dijkstra/build/CMakeFiles/rebuild_cache.dir
+/new_folder/dijkstra/build/CMakeFiles/install.dir

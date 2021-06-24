@@ -6,5 +6,5 @@ CXX_FLAGS =  -std=gnu++17
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/rob/c++_stuff/dijkstra/dijkstra/include 
+CXX_INCLUDES = -I/new_folder/dijkstra/include 
 

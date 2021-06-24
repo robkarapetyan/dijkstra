@@ -13,8 +13,10 @@ public:
         virtual void remove_edge(const std::string& from,
                                  const std::string& to) = 0;
 	virtual void erase_data() = 0;
-        virtual std::string_view shortest_path_from_to(
+        virtual std::string shortest_path_from_to(
                                                 const std::string& from,
                                                 std::string to) = 0;
+        virtual u_int distance_from_to(const std::string& from,
+                                               std::string to) = 0;
 	virtual ~IGraph(){}
 };

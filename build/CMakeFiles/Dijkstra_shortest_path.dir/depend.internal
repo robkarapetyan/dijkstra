@@ -5,12 +5,12 @@ CMakeFiles/Dijkstra_shortest_path.dir/src/graph.cpp.o
  ../include/graph.h
  ../include/igraph.h
  ../include/node.h
- /home/rob/c++_stuff/dijkstra/dijkstra/src/graph.cpp
+ /new_folder/dijkstra/src/graph.cpp
 CMakeFiles/Dijkstra_shortest_path.dir/src/main.cpp.o
  ../include/graph.h
  ../include/igraph.h
  ../include/node.h
- /home/rob/c++_stuff/dijkstra/dijkstra/src/main.cpp
+ /new_folder/dijkstra/src/main.cpp
 CMakeFiles/Dijkstra_shortest_path.dir/src/node.cpp.o
  ../include/node.h
- /home/rob/c++_stuff/dijkstra/dijkstra/src/node.cpp
+ /new_folder/dijkstra/src/node.cpp
