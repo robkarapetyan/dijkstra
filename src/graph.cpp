@@ -127,15 +127,11 @@ void Graph::fill_dijkstra_table(std::string_view source_node_name)
 {
 	clear_dijkstra_table();
 
-	// std::cout << "nodes size :  " << nodes.size() << std::endl;
-
 	Node *current_node = find_node(source_node_name);
 	Node *next_node = nullptr;
 
 	if (current_node == nullptr)
 		return;
-
-	// dijkstra_table[current_node] = std::pair<u_int, std::string>(0, "none");
 
 	std::set<Node *> visited_vertices = {};
 	std::stack<Node *> node_stack = {};
@@ -153,8 +149,6 @@ void Graph::fill_dijkstra_table(std::string_view source_node_name)
 								i);
 			if (it == visited_vertices.end())
 			{
-				// std::cout << "there is no " << i->get_name() << " in visited" << std::endl;
-
 				u_int distance_of_i_node = dijkstra_table[i].first;
 				u_int distance_of_curr_plus_one = dijkstra_table[current_node].first + 1;
 
@@ -163,41 +157,15 @@ void Graph::fill_dijkstra_table(std::string_view source_node_name)
 					dijkstra_table[i] = std::pair<u_int, std::string>(
 						distance_of_curr_plus_one, current_node->get_name());
 				}
-
-				/*int distance = dijkstra_table[current_node->get_name()]
-								   .first +
-							   1;
-				auto itt = std::find(dijkstra_table.begin(),
-									 dijkstra_table.end(), i->get_name());
-				if (itt != dijkstra_table.end())
-				{
-					if (itt->second.first > distance)
-					{
-						dijkstra_table.emplace(
-							i->get_name(),
-							std::pair<int, std::string_view>{distance, current_node
-																		   ->get_name()});
-					}
-				}
-				else
-				{
-					dijkstra_table.emplace(i->get_name(),
-										   std::pair<int, std::string_view>{distance, current_node->get_name()});
-				}*/
 				node_stack.push(i);
 				next_node = i;
 			}
-			// else
-			// {
-			// 	std::cout << "repeat with : " << current_node->get_name() << std::endl;
-			// }
 		}
 		visited_vertices.emplace(current_node);
 		if (current_node == next_node)
 		{
 			if (current_node == node_stack.top())
 			{
-				// std::cout << "		yup		" << std::endl;
 				while (next_node == node_stack.top())
 				{
 					node_stack.pop();
@@ -211,21 +179,7 @@ void Graph::fill_dijkstra_table(std::string_view source_node_name)
 		}
 
 		current_node = next_node;
-
-		// for (auto i : visited_vertices)
-		// {
-		// 	std::cout << i->get_name() << ", ";
-		// }
-		// std::cout << std::endl;
-		// std::cout << visited_vertices.size() << " " << nodes.size() << std::endl;
 	}
-
-	// std::cout << "after fill" << std::endl;
-	// for (auto i = dijkstra_table.begin(); i != dijkstra_table.end(); ++i)
-	// {
-	// 	std::cout << i->first->get_name() << " "
-	// 			  << i->second.first << " " << i->second.second << std::endl;
-	// }
 }
 
 void Graph::clear_dijkstra_table()
