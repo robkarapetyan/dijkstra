@@ -1,1 +1,0 @@
-/usr/bin/c++   -std=gnu++17   CMakeFiles/Dijkstra_shortest_path.dir/src/graph.cpp.o CMakeFiles/Dijkstra_shortest_path.dir/src/main.cpp.o CMakeFiles/Dijkstra_shortest_path.dir/src/node.cpp.o  -o Dijkstra_shortest_path 
