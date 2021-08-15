@@ -30,7 +30,4 @@ public:
 TEST_F(DijkstraTest, ShortestPathCheck) {
   // Expect two strings to be equal.
   EXPECT_EQ("abd", m_graph.shortest_path_from_to("a", "d"));
-  // Expect equality.
-  //std::cout << "tttttttttttttttttttttttttttttttt" << std::endl;
-  EXPECT_EQ(55 * 6, 42);
 }

@@ -19,9 +19,8 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++17")
-install(TARGETS ${PROJECT_NAME} DESTINATION install)
+install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/install)
 
 enable_testing()
 
@@ -38,7 +37,7 @@ target_link_libraries(
 )
 
 target_include_directories(testDijkstra PRIVATE "include")
-install(TARGETS testDijkstra DESTINATION test)
+install(TARGETS testDijkstra DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/test)
 
 include(GoogleTest)
 gtest_discover_tests(testDijkstra)
