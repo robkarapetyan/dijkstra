@@ -1,0 +1,24 @@
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+CMakeSettings.json
+build/
+clang/
+cmake-build-debug/
+.idea/
+
+#Windows
+.vs
+
+#Visual studio code
+.vscode
+.idea/workspace.xml
+.idea/vcs.xml
+.idea/modules.xml
+.idea/DBGH_ASSERTS.iml
