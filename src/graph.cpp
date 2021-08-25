@@ -1,7 +1,5 @@
 #include <iostream>
 #include <set>
-#include <stack>
-#include <string_view>
 #include "graph.h"
 
 void Graph::add_node(Node *node)
@@ -27,8 +25,9 @@ void Graph::add_edge(const std::string &from,
 	Node *a = find_node(from);
 	Node *b = find_node(to);
 
-	if (a and b)
+	if (a and b){
 		a->add_neighbour(b);
+	}
 }
 
 void Graph::remove_node(const std::string &node_to_remove_name)
@@ -76,44 +75,64 @@ void Graph::erase_data()
 }
 
 std::string Graph::shortest_path_from_to(const std::string &from,
-											  std::string to)
+										 const std::string &to)
 {
-	if (find_node(from) == nullptr or find_node(to) == nullptr){
-		return "check the node names";
-	}
-	fill_dijkstra_table(from);
-	std::string str = "";
-	str.insert(0, to);
-	while (to != from)
+	try
 	{
-		str.insert(0, dijkstra_table[find_node(to)].second);
-		to = dijkstra_table[find_node(to)].second;
+		if (find_node(from) == nullptr or find_node(to) == nullptr)
+		{
+			throw std::invalid_argument("Node not found");
+		}
 	}
-	return str;
+	catch (std::invalid_argument ex)
+	{
+		std::cout << ex.what() << std::endl;
+	}
+
+	std::string to_tmp = to;
+	fill_dijkstra_table(from);
+	std::string ret_str = "";
+	ret_str.insert(0, to_tmp);
+	while (to_tmp != from)
+	{
+		ret_str.insert(0, dijkstra_table[find_node(to_tmp)].second);
+		to_tmp = dijkstra_table[find_node(to_tmp)].second;
+	}
+	print_dijkstra_table();
+	return ret_str;
 }
 
-u_int Graph::distance_from_to(const std::string &from,
-							  std::string to)
+uint32_t Graph::distance_from_to(const std::string &from,
+								 const std::string &to)
 {
-	if (find_node(from) != nullptr and find_node(to) != nullptr)
+	try
 	{
-		fill_dijkstra_table(from);
-		return dijkstra_table[find_node(to)].first + 1;
+		if (find_node(from) == nullptr or find_node(to) == nullptr)
+		{
+			throw std::invalid_argument("Node not found");
+		}
 	}
+	catch (std::invalid_argument ex)
+	{
+		std::cout << ex.what() << std::endl;
+	}
+	fill_dijkstra_table(from);
+	return dijkstra_table[find_node(to)].first;
 }
 
 // Private
 
 void Graph::remove_edge(Node *a, Node *b)
 {
-	if (a != nullptr || b != nullptr)
+	if (a != nullptr or b != nullptr){
 		return;
+	}
 	a->remove_neighbour(b);
 }
 
 Node *Graph::find_node(std::string_view source_node_name)
 {
-	for (Node *&a : nodes)
+	for (Node *a : nodes)
 	{
 		if (a->get_name() == source_node_name)
 		{
@@ -123,72 +142,61 @@ Node *Graph::find_node(std::string_view source_node_name)
 	return nullptr;
 }
 
-void Graph::fill_dijkstra_table(std::string_view source_node_name)
-{
+void Graph::fill_dijkstra_table(std::string_view source_node_name){
 	clear_dijkstra_table();
 
 	Node *current_node = find_node(source_node_name);
 	Node *next_node = nullptr;
 
-	if (current_node == nullptr)
+	if (current_node == nullptr) {
 		return;
+	}
+	std::set<Node*> visited;
+	std::multimap<int, Node*> priority_map; // A multimap representing nodes with their distances from root as keys
 
-	std::set<Node *> visited_vertices = {};
-	std::stack<Node *> node_stack = {};
+	visited.insert(current_node);
+	dijkstra_table[current_node] = { 0, "root" };
+	std::vector<Node*> neighbours = current_node->get_neighbours();
+	for (int i = 0; !neighbours.empty(), i < neighbours.size(); ++i) {
+		dijkstra_table[neighbours[i]] = { 1, current_node->get_name() };
+		priority_map.insert({ 1, neighbours[i] });
+	}
 
-	dijkstra_table.emplace(current_node, std::pair<int,
-												   std::string>{0, ""});
-	node_stack.push(current_node);
+	while (!priority_map.empty()) {
+		if (visited.find(priority_map.begin()->second) == visited.end()) {
+			current_node = priority_map.begin()->second;
+			neighbours = current_node->get_neighbours();
+			for (int i = 0; !neighbours.empty(), i < neighbours.size(); ++i)
+			{
+				auto it = dijkstra_table.find(neighbours[i]);
+				if (it == dijkstra_table.end() or it != dijkstra_table.end() 
+				and it->second.first > dijkstra_table[current_node].first + 1)
+				{
+					dijkstra_table[neighbours[i]] = {dijkstra_table[current_node].first + 1, current_node->get_name()};
+				}
+				priority_map.insert({dijkstra_table[current_node].first + 1, neighbours[i]});
+			}
+			visited.insert(current_node);
+		}
+		priority_map.erase(priority_map.begin());
+	}
+}
 
-	while (node_stack.empty() == false)
+void Graph::print_dijkstra_table()
+{
+	std::cout << "node	distance	previous" << std::endl;
+	for (auto i = dijkstra_table.begin(); i != dijkstra_table.end(); ++i)
 	{
-		for (auto i : current_node->node_neighbours)
-		{
-			auto it = std::find(visited_vertices.begin(),
-								visited_vertices.end(),
-								i);
-			if (it == visited_vertices.end())
-			{
-				u_int distance_of_i_node = dijkstra_table[i].first;
-				u_int distance_of_curr_plus_one = dijkstra_table[current_node].first + 1;
-
-				if (distance_of_i_node > distance_of_curr_plus_one)
-				{
-					dijkstra_table[i] = std::pair<u_int, std::string>(
-						distance_of_curr_plus_one, current_node->get_name());
-				}
-				node_stack.push(i);
-				next_node = i;
-			}
-		}
-		visited_vertices.emplace(current_node);
-		if (current_node == next_node)
-		{
-			if (current_node == node_stack.top())
-			{
-				while (next_node == node_stack.top())
-				{
-					node_stack.pop();
-				}
-			}
-		}
-		if (node_stack.empty() == false)
-		{
-			next_node = node_stack.top();
-			node_stack.pop();
-		}
-
-		current_node = next_node;
+		std::cout << i->first->get_name() << "	" << i->second.first << "		" << i->second.second << std::endl;
 	}
 }
 
 void Graph::clear_dijkstra_table()
 {
-
 	dijkstra_table.clear();
-	for (auto it = nodes.begin(); it != nodes.end(); ++it)
-	{
-		dijkstra_table.emplace(*it, std::pair<u_int, std::string>(
-										-1, ""));
-	}
+}
+
+Graph::~Graph()
+{
+	erase_data();
 }
